@@ -12,13 +12,16 @@ containers:
 
 tasks:
   build:
-    description: Build the application.
+    description: Build the template.
     run:
       container: build-env
-      command: ./gradlew assembleDist
+      environment:
+        AWS_ACCESS_KEY_ID: $AWS_ACCESS_KEY_ID
+        AWS_SECRET_ACCESS_KEY: $AWS_SECRET_ACCESS_KEY
+      command: build encrypted_ami.json
 
   validate:
     description: Validate packer template
     run:
       container: build-env
-      command: validate example.json
+      command: validate encrypted_ami.json
