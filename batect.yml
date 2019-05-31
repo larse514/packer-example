@@ -1,0 +1,24 @@
+containers:
+  build-env:
+    image: hashicorp/packer:light
+    volumes:
+      - local: .
+        container: /code
+        options: cached
+    working_directory: /code
+    run_as_current_user:
+      enabled: true
+      home_directory: /home/container-user
+
+tasks:
+  build:
+    description: Build the application.
+    run:
+      container: build-env
+      command: ./gradlew assembleDist
+
+  validate:
+    description: Validate packer template
+    run:
+      container: build-env
+      command: validate example.json
