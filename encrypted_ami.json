@@ -12,7 +12,8 @@
       "ami_block_device_mappings": [
         {
           "encrypted": true,
-          "device_name": "/dev/sdh"
+          "device_name": "/dev/sdh",
+          "volume_size": 15
         }
       ],
       "ami_description": "Encrpyted Ubuntu AMI",
